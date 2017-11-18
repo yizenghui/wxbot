@@ -96,6 +96,16 @@ func pushLink(u string) {
 	fmt.Println(doc.Text())
 	fmt.Println(u)
 }
+func pushLink2(u string) {
+
+	link := url.QueryEscape(u)
+	doc, err := goquery.NewDocument(fmt.Sprintf("http://api.readfollow.com/fetch?url=%v", link))
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(doc.Text())
+	fmt.Println(u)
+}
 
 func RemoveDuplicatesAndEmpty(a []string) (ret []string) {
 	a_len := len(a)
@@ -118,7 +128,8 @@ func regAndPostWxLink(content string) {
 			arr[u] = "1"
 		}
 		for u := range arr {
-			pushLink(u)
+			pushLink2(u)
+			// go	pushLink(u)
 		}
 	}
 }

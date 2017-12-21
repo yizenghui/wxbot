@@ -10,6 +10,7 @@ import (
 	"strconv"
 	"time"
 
+	_ "github.com/CodyGuo/godaemon"
 	"github.com/PuerkitoBio/goquery"
 	"github.com/Sirupsen/logrus"
 

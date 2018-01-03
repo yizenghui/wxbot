@@ -168,20 +168,25 @@ func main() {
 		}
 	})
 
-	// 5s 发一次消息
-	// bot.AddTimer(5 * time.Second)
-	// bot.Handle(`/timer/5s`, func(arg2 wechat.Event) {
-	// 	data := arg2.Data.(wechat.EventTimerData)
-	// 	if bot.IsLogin {
-	// 		bot.SendTextMsg(fmt.Sprintf(`第%v次`, data.Count), `filehelper`)
-	// 	}
-	// })
+	// 8h 发一次消息
+	bot.AddTimer(8 * time.Hour)
+	bot.Handle(`/timer/8h`, func(arg2 wechat.Event) {
+		data := arg2.Data.(wechat.EventTimerData)
+		if bot.IsLogin {
+			bot.SendTextMsg(fmt.Sprintf(`第%v次`, data.Count), `filehelper`)
+		}
+	})
 
 	// 9:00 每天9点发一条消息
 	bot.AddTiming(`9:00`)
 	bot.Handle(`/timing/9:00`, func(arg2 wechat.Event) {
 		// data := arg2.Data.(wechat.EventTimingtData)
 		bot.SendTextMsg(`9:00 了`, `filehelper`)
+	})
+	bot.AddTiming(`17:00`)
+	bot.Handle(`/timing/17:00`, func(arg2 wechat.Event) {
+		// data := arg2.Data.(wechat.EventTimingtData)
+		bot.SendTextMsg(`17:00 i m runing`, `filehelper`)
 	})
 
 	bot.Go()
